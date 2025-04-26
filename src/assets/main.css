@@ -1,0 +1,232 @@
+@import './base.css';
+
+#app {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-primary);
+  transition: all 0.3s ease;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: var(--color-primary-dark);
+    background-color: rgba(59, 130, 246, 0.1);
+  }
+}
+
+/* Custom styles for OS SimVis */
+
+/* Card styling */
+.card {
+  background-color: var(--color-background-soft);
+  border-radius: var(--card-border-radius);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Button styling */
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--button-border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: var(--color-primary);
+  color: white;
+}
+
+button:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background-color: var(--color-background-mute);
+  color: var(--color-text-light);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Button variants */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary-dark);
+}
+
+.btn-success {
+  background-color: var(--color-success);
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: var(--color-success-dark);
+}
+
+.btn-warning {
+  background-color: var(--color-warning);
+  color: white;
+}
+
+.btn-warning:hover {
+  background-color: var(--color-warning-dark);
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: var(--color-danger-dark);
+}
+
+.btn-accent {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.btn-accent:hover {
+  background-color: var(--color-accent-dark);
+}
+
+/* Form controls */
+input, select, textarea {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--input-border-radius);
+  background-color: var(--color-background);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Range input styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--color-background-mute);
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  background: var(--color-primary-dark);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+/* Icons */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive adjustments */
+@media (min-width: 768px) {
+  #app {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  #app {
+    padding: 2rem;
+  }
+}
