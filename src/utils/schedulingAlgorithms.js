@@ -30,11 +30,11 @@ class SchedulingAlgorithm {
    */
   runFullSimulation() {
     this.initialize(this.processes);
-    
+
     while (!this.isFinished) {
       this.step();
     }
-    
+
     return {
       timeline: this.timeline,
       processes: this.processes,
@@ -48,13 +48,13 @@ class SchedulingAlgorithm {
   step() {
     // Move arriving processes to ready queue
     this.checkArrivingProcesses();
-    
+
     // Select the next process to run (algorithm-specific)
     this.selectNextProcess();
-    
+
     // Execute the current process for one time unit
     this.executeCurrentProcess();
-    
+
     // Check if simulation is complete
     this.checkCompletion();
   }
@@ -66,7 +66,7 @@ class SchedulingAlgorithm {
     const arrivingProcesses = this.processes.filter(
       p => p.state === ProcessState.NEW && p.arrivalTime <= this.currentTime
     );
-    
+
     for (const process of arrivingProcesses) {
       process.state = ProcessState.READY;
       this.readyQueue.push(process);
@@ -91,22 +91,22 @@ class SchedulingAlgorithm {
         processId: this.runningProcess.id,
         processName: this.runningProcess.name
       });
-      
+
       // If this is the first time the process is running
       if (this.runningProcess.startTime === -1) {
         this.runningProcess.startTime = this.currentTime;
       }
-      
+
       // Execute for one time unit
       this.runningProcess.remainingTime--;
-      
+
       // Check if process is complete
       if (this.runningProcess.remainingTime <= 0) {
         this.runningProcess.finishTime = this.currentTime + 1;
         this.runningProcess.state = ProcessState.COMPLETED;
         this.runningProcess.calculateTurnaroundTime();
         this.runningProcess.calculateWaitingTime();
-        
+
         // Add to completed processes
         this.completedProcesses.push(this.runningProcess);
         this.runningProcess = null;
@@ -116,17 +116,17 @@ class SchedulingAlgorithm {
       this.timeline.push({
         time: this.currentTime,
         processId: null,
-        processName: 'Idle'
+        processName: '空闲'
       });
     }
-    
+
     // Update waiting time for processes in ready queue
     for (const process of this.readyQueue) {
       if (process.state === ProcessState.READY) {
         process.waitingTime++;
       }
     }
-    
+
     // Increment current time
     this.currentTime++;
   }
@@ -137,8 +137,8 @@ class SchedulingAlgorithm {
   checkCompletion() {
     if (
       this.completedProcesses.length === this.processes.length ||
-      (this.readyQueue.length === 0 && !this.runningProcess && 
-       this.processes.every(p => p.state === ProcessState.COMPLETED || 
+      (this.readyQueue.length === 0 && !this.runningProcess &&
+       this.processes.every(p => p.state === ProcessState.COMPLETED ||
                                  p.arrivalTime > this.currentTime))
     ) {
       this.isFinished = true;
@@ -152,7 +152,7 @@ class SchedulingAlgorithm {
     const completedProcesses = this.processes.filter(
       p => p.state === ProcessState.COMPLETED
     );
-    
+
     if (completedProcesses.length === 0) {
       return {
         averageTurnaroundTime: 0,
@@ -160,15 +160,15 @@ class SchedulingAlgorithm {
         throughput: 0
       };
     }
-    
+
     const totalTurnaroundTime = completedProcesses.reduce(
       (sum, p) => sum + p.turnaroundTime, 0
     );
-    
+
     const totalWaitingTime = completedProcesses.reduce(
       (sum, p) => sum + p.waitingTime, 0
     );
-    
+
     return {
       averageTurnaroundTime: totalTurnaroundTime / completedProcesses.length,
       averageWaitingTime: totalWaitingTime / completedProcesses.length,
@@ -183,15 +183,15 @@ class SchedulingAlgorithm {
 export class FCFSScheduler extends SchedulingAlgorithm {
   constructor() {
     super();
-    this.name = 'First-Come, First-Served (FCFS)';
-    this.description = 'Processes are executed in the order they arrive';
+    this.name = '先来先服务 (FCFS)';
+    this.description = '按照进程到达的顺序执行';
   }
 
   selectNextProcess() {
     if (!this.runningProcess && this.readyQueue.length > 0) {
       // Sort by arrival time
       this.readyQueue.sort((a, b) => a.arrivalTime - b.arrivalTime);
-      
+
       // Select the first process
       this.runningProcess = this.readyQueue.shift();
       this.runningProcess.state = ProcessState.RUNNING;
@@ -205,15 +205,15 @@ export class FCFSScheduler extends SchedulingAlgorithm {
 export class SJFScheduler extends SchedulingAlgorithm {
   constructor() {
     super();
-    this.name = 'Shortest Job First (SJF)';
-    this.description = 'Non-preemptive scheduling based on burst time';
+    this.name = '最短作业优先 (SJF)';
+    this.description = '基于执行时间的非抢占式调度';
   }
 
   selectNextProcess() {
     if (!this.runningProcess && this.readyQueue.length > 0) {
       // Sort by burst time
       this.readyQueue.sort((a, b) => a.burstTime - b.burstTime);
-      
+
       // Select the process with shortest burst time
       this.runningProcess = this.readyQueue.shift();
       this.runningProcess.state = ProcessState.RUNNING;
@@ -227,8 +227,8 @@ export class SJFScheduler extends SchedulingAlgorithm {
 export class SRTFScheduler extends SchedulingAlgorithm {
   constructor() {
     super();
-    this.name = 'Shortest Remaining Time First (SRTF)';
-    this.description = 'Preemptive version of SJF';
+    this.name = '最短剩余时间优先 (SRTF)';
+    this.description = 'SJF 的抢占式版本';
   }
 
   selectNextProcess() {
@@ -238,11 +238,11 @@ export class SRTFScheduler extends SchedulingAlgorithm {
       this.readyQueue.push(this.runningProcess);
       this.runningProcess = null;
     }
-    
+
     if (this.readyQueue.length > 0) {
       // Sort by remaining time
       this.readyQueue.sort((a, b) => a.remainingTime - b.remainingTime);
-      
+
       // Select the process with shortest remaining time
       this.runningProcess = this.readyQueue.shift();
       this.runningProcess.state = ProcessState.RUNNING;
@@ -256,15 +256,15 @@ export class SRTFScheduler extends SchedulingAlgorithm {
 export class PriorityScheduler extends SchedulingAlgorithm {
   constructor() {
     super();
-    this.name = 'Priority Scheduling';
-    this.description = 'Non-preemptive scheduling based on priority (lower value = higher priority)';
+    this.name = '优先级调度';
+    this.description = '基于优先级的非抢占式调度（数值越小优先级越高）';
   }
 
   selectNextProcess() {
     if (!this.runningProcess && this.readyQueue.length > 0) {
       // Sort by priority (lower value = higher priority)
       this.readyQueue.sort((a, b) => a.priority - b.priority);
-      
+
       // Select the process with highest priority
       this.runningProcess = this.readyQueue.shift();
       this.runningProcess.state = ProcessState.RUNNING;
@@ -278,8 +278,8 @@ export class PriorityScheduler extends SchedulingAlgorithm {
 export class RoundRobinScheduler extends SchedulingAlgorithm {
   constructor(timeQuantum = 2) {
     super();
-    this.name = 'Round Robin';
-    this.description = `Time-sharing algorithm with time quantum of ${timeQuantum}`;
+    this.name = '时间片轮转';
+    this.description = `时间量子为 ${timeQuantum} 的时间共享算法`;
     this.timeQuantum = timeQuantum;
     this.currentQuantum = 0;
   }
@@ -294,14 +294,14 @@ export class RoundRobinScheduler extends SchedulingAlgorithm {
     if (this.runningProcess && this.currentQuantum < this.timeQuantum) {
       return;
     }
-    
+
     // If a process is running but its quantum is expired, put it back in the ready queue
     if (this.runningProcess) {
       this.runningProcess.state = ProcessState.READY;
       this.readyQueue.push(this.runningProcess);
       this.runningProcess = null;
     }
-    
+
     // Select the next process from the ready queue (FIFO order)
     if (this.readyQueue.length > 0) {
       this.runningProcess = this.readyQueue.shift();

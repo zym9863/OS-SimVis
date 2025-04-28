@@ -2,14 +2,14 @@
   <div class="process-stats card">
     <h3>
       <span class="icon" v-html="ICON_STATS"></span>
-      Statistics
+      统计信息
     </h3>
 
     <div class="stats-summary">
       <div class="stat-item">
         <div class="stat-icon" v-html="ICON_TURNAROUND"></div>
         <div class="stat-content">
-          <div class="stat-label">Average Turnaround Time</div>
+          <div class="stat-label">平均周转时间</div>
           <div class="stat-value">{{ formatNumber(stats.averageTurnaroundTime) }}</div>
         </div>
       </div>
@@ -17,7 +17,7 @@
       <div class="stat-item">
         <div class="stat-icon" v-html="ICON_WAITING"></div>
         <div class="stat-content">
-          <div class="stat-label">Average Waiting Time</div>
+          <div class="stat-label">平均等待时间</div>
           <div class="stat-value">{{ formatNumber(stats.averageWaitingTime) }}</div>
         </div>
       </div>
@@ -25,8 +25,8 @@
       <div class="stat-item">
         <div class="stat-icon" v-html="ICON_THROUGHPUT"></div>
         <div class="stat-content">
-          <div class="stat-label">Throughput</div>
-          <div class="stat-value">{{ formatNumber(stats.throughput) }} <span class="stat-unit">processes/time unit</span></div>
+          <div class="stat-label">吞吐量</div>
+          <div class="stat-value">{{ formatNumber(stats.throughput) }} <span class="stat-unit">进程/时间单位</span></div>
         </div>
       </div>
     </div>
@@ -34,41 +34,41 @@
     <div class="process-details" v-if="completedProcesses.length > 0">
       <h4>
         <span class="icon" v-html="ICON_COMPLETED"></span>
-        Process Details
+        进程详情
       </h4>
       <div class="table-container">
         <table>
           <thead>
             <tr>
-              <th>Process</th>
+              <th>进程</th>
               <th>
                 <span class="th-content">
                   <span class="icon" v-html="ICON_ARRIVAL"></span>
-                  Arrival
+                  到达
                 </span>
               </th>
               <th>
                 <span class="th-content">
                   <span class="icon" v-html="ICON_BURST"></span>
-                  Burst
+                  执行
                 </span>
               </th>
               <th>
                 <span class="th-content">
                   <span class="icon" v-html="ICON_COMPLETED"></span>
-                  Completion
+                  完成
                 </span>
               </th>
               <th>
                 <span class="th-content">
                   <span class="icon" v-html="ICON_TURNAROUND"></span>
-                  Turnaround
+                  周转
                 </span>
               </th>
               <th>
                 <span class="th-content">
                   <span class="icon" v-html="ICON_WAITING"></span>
-                  Waiting
+                  等待
                 </span>
               </th>
             </tr>
@@ -88,7 +88,7 @@
     </div>
     <div class="no-data" v-else>
       <span class="icon" v-html="ICON_WAITING"></span>
-      <p>No completed processes yet. Run the simulation to see statistics.</p>
+      <p>尚无已完成的进程。运行模拟以查看统计信息。</p>
     </div>
   </div>
 </template>

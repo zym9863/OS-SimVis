@@ -1,6 +1,6 @@
 <template>
   <div class="process-scheduler">
-    <h2>Process Scheduling Visualization</h2>
+    <h2>进程调度可视化</h2>
 
     <div class="scheduler-controls" v-if="!isSimulationRunning">
       <ProcessForm
@@ -14,7 +14,7 @@
       <div class="algorithm-selector card">
         <h3>
           <span class="icon" v-html="ICON_ALGORITHM"></span>
-          Select Scheduling Algorithm
+          选择调度算法
         </h3>
         <div class="algorithm-options">
           <div
@@ -37,7 +37,7 @@
         <div class="time-quantum-control" v-if="selectedAlgorithm && selectedAlgorithm.name === 'Round Robin'">
           <label for="timeQuantum">
             <span class="icon" v-html="ICON_ROUND_ROBIN"></span>
-            Time Quantum:
+            时间片长度:
           </label>
           <input
             type="number"
@@ -47,7 +47,7 @@
             max="10"
             @change="updateRoundRobinTimeQuantum"
           >
-          <small>Number of time units each process runs before switching</small>
+          <small>每个进程运行的时间单位数，超过后切换到下一个进程</small>
         </div>
       </div>
     </div>
@@ -56,60 +56,60 @@
       <div class="simulation-header card">
         <h3>
           <span class="icon" v-html="ICON_ALGORITHM"></span>
-          {{ selectedAlgorithm.name }} Simulation
+          {{ selectedAlgorithm.name }} 模拟
         </h3>
         <div class="simulation-controls">
           <div class="time-display">
             <span class="icon" v-html="ICON_CLOCK"></span>
-            Time: {{ currentTime }}
+            时间: {{ currentTime }}
           </div>
           <button
             @click="stepSimulation"
             :disabled="isSimulationComplete"
             class="btn-secondary"
-            title="Step forward one time unit"
+            title="向前执行一个时间单位"
           >
             <span v-html="ICON_STEP"></span>
-            Step
+            单步
           </button>
           <button
             @click="runSimulation"
             :disabled="isSimulationComplete || isAutoRunning"
             class="btn-primary"
-            title="Run simulation automatically"
+            title="自动运行模拟"
           >
             <span v-html="ICON_RUN"></span>
-            Run
+            运行
           </button>
           <button
             @click="pauseSimulation"
             :disabled="!isAutoRunning"
             class="btn-warning"
-            title="Pause automatic simulation"
+            title="暂停自动模拟"
           >
             <span v-html="ICON_PAUSE"></span>
-            Pause
+            暂停
           </button>
           <button
             @click="resetSimulation"
             class="btn-accent"
-            title="Reset simulation to beginning"
+            title="重置模拟到开始状态"
           >
             <span v-html="ICON_RESET"></span>
-            Reset
+            重置
           </button>
           <button
             @click="stopSimulation"
             class="btn-danger"
-            title="Stop simulation and return to setup"
+            title="停止模拟并返回设置界面"
           >
             <span v-html="ICON_STOP"></span>
-            Stop
+            停止
           </button>
           <div class="speed-control">
-            <label for="simulationSpeed" title="Adjust simulation speed">
+            <label for="simulationSpeed" title="调整模拟速度">
               <span class="icon" v-html="ICON_SPEED"></span>
-              Speed:
+              速度:
             </label>
             <input
               type="range"
@@ -129,7 +129,7 @@
 
       <div class="queues-container">
         <ProcessQueue
-          title="Ready Queue"
+          title="就绪队列"
           :processes="readyQueue"
           queue-type="ready"
           :show-priority="showPriority"
@@ -137,7 +137,7 @@
         />
 
         <ProcessQueue
-          title="Running Process"
+          title="运行中进程"
           :processes="runningProcess ? [runningProcess] : []"
           queue-type="running"
           :show-priority="showPriority"
@@ -145,7 +145,7 @@
         />
 
         <ProcessQueue
-          title="Completed Processes"
+          title="已完成进程"
           :processes="completedProcesses"
           queue-type="completed"
           :show-priority="showPriority"

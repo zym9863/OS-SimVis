@@ -1,11 +1,11 @@
 <template>
   <div class="process-form card">
-    <h3>Create Process</h3>
+    <h3>创建进程</h3>
     <form @submit.prevent="addProcess">
       <div class="form-group">
         <label for="processName">
           <span class="icon" v-html="ICON_PROCESS"></span>
-          Process Name:
+          进程名称:
         </label>
         <input
           type="text"
@@ -19,7 +19,7 @@
       <div class="form-group">
         <label for="arrivalTime">
           <span class="icon" v-html="ICON_ARRIVAL"></span>
-          Arrival Time:
+          到达时间:
         </label>
         <input
           type="number"
@@ -34,7 +34,7 @@
       <div class="form-group">
         <label for="burstTime">
           <span class="icon" v-html="ICON_BURST"></span>
-          Burst Time:
+          执行时间:
         </label>
         <input
           type="number"
@@ -49,7 +49,7 @@
       <div class="form-group">
         <label for="priority">
           <span class="icon" v-html="ICON_PRIORITY_ATTR"></span>
-          Priority:
+          优先级:
         </label>
         <input
           type="number"
@@ -58,32 +58,32 @@
           min="0"
           placeholder="0"
         >
-        <small>Lower value = higher priority</small>
+        <small>数值越小 = 优先级越高</small>
       </div>
 
       <div class="form-actions">
         <button type="submit" class="btn-success">
           <span v-html="ICON_ADD"></span>
-          Add Process
+          添加进程
         </button>
         <button type="button" class="btn-secondary" @click="generateRandomProcess">
           <span v-html="ICON_RANDOM"></span>
-          Random Process
+          随机进程
         </button>
       </div>
     </form>
 
     <div class="process-list">
-      <h3>Process List</h3>
+      <h3>进程列表</h3>
       <div v-if="processes.length > 0" class="table-container">
         <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Arrival Time</th>
-              <th>Burst Time</th>
-              <th>Priority</th>
-              <th>Actions</th>
+              <th>名称</th>
+              <th>到达时间</th>
+              <th>执行时间</th>
+              <th>优先级</th>
+              <th>操作</th>
             </tr>
           </thead>
           <tbody>
@@ -95,14 +95,14 @@
               <td>
                 <button @click="removeProcess(index)" class="btn-danger btn-sm">
                   <span v-html="ICON_REMOVE"></span>
-                  Remove
+                  移除
                 </button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p v-else class="empty-message">No processes added yet.</p>
+      <p v-else class="empty-message">尚未添加任何进程。</p>
 
       <div class="process-actions">
         <button
@@ -111,7 +111,7 @@
           :disabled="processes.length === 0"
         >
           <span v-html="ICON_START"></span>
-          Start Simulation
+          开始模拟
         </button>
         <button
           @click="clearProcesses"
@@ -119,14 +119,14 @@
           :disabled="processes.length === 0"
         >
           <span v-html="ICON_CLEAR"></span>
-          Clear All
+          清空全部
         </button>
         <button
           @click="generateExampleSet"
           class="btn-accent"
         >
           <span v-html="ICON_EXAMPLE"></span>
-          Generate Example Set
+          生成示例集
         </button>
       </div>
     </div>

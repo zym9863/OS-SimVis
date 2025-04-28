@@ -7,7 +7,7 @@
     <div class="queue-container">
       <div v-if="processes.length === 0" class="empty-queue">
         <span class="icon" v-html="ICON_EMPTY"></span>
-        Empty
+        空
       </div>
       <div
         v-for="process in processes"
@@ -20,28 +20,28 @@
           <div class="detail-item">
             <span class="detail-label">
               <span class="icon" v-html="ICON_ARRIVAL"></span>
-              Arrival:
+              到达:
             </span>
             <span class="detail-value">{{ process.arrivalTime }}</span>
           </div>
           <div class="detail-item">
             <span class="detail-label">
               <span class="icon" v-html="ICON_BURST"></span>
-              Burst:
+              执行:
             </span>
             <span class="detail-value">{{ process.burstTime }}</span>
           </div>
           <div class="detail-item">
             <span class="detail-label">
               <span class="icon" v-html="ICON_REMAINING"></span>
-              Remaining:
+              剩余:
             </span>
             <span class="detail-value">{{ process.remainingTime }}</span>
           </div>
           <div class="detail-item" v-if="showPriority">
             <span class="detail-label">
               <span class="icon" v-html="ICON_PRIORITY_ATTR"></span>
-              Priority:
+              优先级:
             </span>
             <span class="detail-value">{{ process.priority }}</span>
           </div>

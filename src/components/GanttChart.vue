@@ -2,7 +2,7 @@
   <div class="gantt-chart card">
     <h3>
       <span class="icon" v-html="ICON_CHART"></span>
-      Gantt Chart
+      甘特图
     </h3>
     <div class="chart-container" ref="chartContainer">
       <div class="timeline">
@@ -46,7 +46,7 @@
       </div>
       <div class="legend-item">
         <div class="color-box" style="backgroundColor: var(--color-background-mute)"></div>
-        <span>Idle</span>
+        <span>空闲</span>
       </div>
     </div>
   </div>

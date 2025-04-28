@@ -22,7 +22,7 @@ const ICON_LOGO = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48
       <div class="logo-icon" v-html="ICON_LOGO"></div>
       <h1 class="title">OS SimVis</h1>
     </div>
-    <div class="subtitle">Process Scheduling Visualization</div>
+    <div class="subtitle">进程调度可视化</div>
   </header>
 
   <main>
