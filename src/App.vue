@@ -1,5 +1,7 @@
 <script setup>
+import { ref } from 'vue';
 import ProcessScheduler from './components/ProcessScheduler.vue'
+import MemoryAllocator from './components/MemoryAllocator.vue'
 
 // Custom logo icon
 const ICON_LOGO = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -14,6 +16,9 @@ const ICON_LOGO = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48
   <line x1="2" y1="9" x2="4" y2="9"></line>
   <line x1="2" y1="14" x2="4" y2="14"></line>
 </svg>`;
+
+// Active component
+const activeComponent = ref('process-scheduler');
 </script>
 
 <template>
@@ -22,11 +27,29 @@ const ICON_LOGO = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48
       <div class="logo-icon" v-html="ICON_LOGO"></div>
       <h1 class="title">OS SimVis</h1>
     </div>
-    <div class="subtitle">进程调度可视化</div>
+    <div class="subtitle">操作系统模拟可视化</div>
   </header>
 
+  <nav class="component-nav">
+    <button
+      @click="activeComponent = 'process-scheduler'"
+      :class="{ active: activeComponent === 'process-scheduler' }"
+      class="nav-button"
+    >
+      进程调度可视化
+    </button>
+    <button
+      @click="activeComponent = 'memory-allocator'"
+      :class="{ active: activeComponent === 'memory-allocator' }"
+      class="nav-button"
+    >
+      内存分配可视化
+    </button>
+  </nav>
+
   <main>
-    <ProcessScheduler />
+    <ProcessScheduler v-if="activeComponent === 'process-scheduler'" />
+    <MemoryAllocator v-if="activeComponent === 'memory-allocator'" />
   </main>
 </template>
 
@@ -92,6 +115,35 @@ header::before {
   font-weight: 400;
   color: rgba(255, 255, 255, 0.9);
   z-index: 2;
+}
+
+.component-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.nav-button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-background-soft);
+  border: none;
+  border-radius: var(--button-border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: var(--color-background-mute);
+  transform: translateY(-2px);
+}
+
+.nav-button.active {
+  background-color: var(--color-primary);
+  color: white;
 }
 
 main {

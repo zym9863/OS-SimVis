@@ -2,9 +2,11 @@
 
 [English](README.md) | [中文](README_zh.md)
 
-A Vue.js-based interactive visualization tool for operating system process scheduling algorithms. This application helps students and educators understand how different CPU scheduling algorithms work through real-time visualization.
+A Vue.js-based interactive visualization tool for operating system concepts. This application helps students and educators understand how different CPU scheduling algorithms and memory allocation strategies work through real-time visualization.
 
 ## Features
+
+### Process Scheduling Visualization
 
 - **Process Creation**: Create custom processes with name, arrival time, burst time, and priority
 - **Multiple Scheduling Algorithms**:
@@ -23,6 +25,23 @@ A Vue.js-based interactive visualization tool for operating system process sched
   - Automatic simulation with adjustable speed
   - Reset and restart functionality
 - **Example Generator**: Quickly create example process sets for demonstration
+
+### Memory Allocation Visualization
+
+- **Memory Space Visualization**: Visual representation of memory blocks
+- **Multiple Allocation Algorithms**:
+  - First Fit: Allocates the first free block that is large enough
+  - Best Fit: Allocates the smallest free block that is large enough
+  - Worst Fit: Allocates the largest free block
+- **Memory Operations**:
+  - Allocate memory for processes
+  - Deallocate memory when no longer needed
+- **Fragmentation Visualization**:
+  - Internal fragmentation (wasted space within allocated blocks)
+  - External fragmentation (small free blocks that cannot be used effectively)
+- **Memory Statistics**:
+  - Memory utilization
+  - Allocation history
 
 ## Scheduling Algorithms
 
